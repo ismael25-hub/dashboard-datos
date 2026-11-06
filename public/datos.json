@@ -1,0 +1,7 @@
+[
+  { "id": 1, "mes": "Enero", "ventas": 1500, "usuarios": 300, "conversion": 20 },
+  { "id": 2, "mes": "Febrero", "ventas": 2300, "usuarios": 450, "conversion": 25 },
+  { "id": 3, "mes": "Marzo", "ventas": 1800, "usuarios": 380, "conversion": 22 },
+  { "id": 4, "mes": "Abril", "ventas": 3200, "usuarios": 600, "conversion": 30 },
+  { "id": 5, "mes": "Mayo", "ventas": 2800, "usuarios": 520, "conversion": 28 }
+]
