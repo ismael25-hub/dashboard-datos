@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import TarjetaMetrica from './components/TarjetaMetrica';
 import TablaDatos from './components/TablaDatos';
+import PanelAnalitico from './components/PanelAnalitico'; // <-- Importado
 import { obtenerDatosVisualizacion, procesarDatos } from './services/dataService';
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
             {/* Sección de Tabla */}
             <h2 style={{ color: '#1e293b', marginTop: '40px' }}>Detalle Mensual</h2>
             <TablaDatos datos={datosProcesados.datosOriginales} />
+            
+            {/* COMPONENTE DE LA PRÁCTICA 3 (API EXTERNA) */}
+            <PanelAnalitico />
+            
           </>
         )}
       </main>

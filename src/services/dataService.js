@@ -1,9 +1,9 @@
-// dataService.js
+// src/services/dataService.js
+import apiClient from './apiClient';
 
-// 1. Simular petición HTTP
+// 1. Simular petición HTTP (Práctica anterior)
 export const obtenerDatosVisualizacion = async () => {
   try {
-    // Hacemos un fetch al archivo JSON que está en la carpeta public
     const respuesta = await fetch('/datos.json');
     if (!respuesta.ok) throw new Error('Error al cargar los datos');
     const datos = await respuesta.json();
@@ -14,13 +14,11 @@ export const obtenerDatosVisualizacion = async () => {
   }
 };
 
-// 2. Procesar los datos (filtrar o formatear)
+// 2. Procesar los datos (Práctica anterior)
 export const procesarDatos = (datos) => {
-  // Por ejemplo, extraemos las etiquetas (meses) y los valores (ventas)
   const etiquetas = datos.map(item => item.mes);
   const valoresVentas = datos.map(item => item.ventas);
   
-  // Calculamos una métrica total
   const totalVentas = valoresVentas.reduce((acc, curr) => acc + curr, 0);
   const totalUsuarios = datos.reduce((acc, curr) => acc + curr.usuarios, 0);
 
@@ -31,4 +29,23 @@ export const procesarDatos = (datos) => {
     totalUsuarios,
     datosOriginales: datos
   };
+};
+
+// 3. NUEVA FUNCIÓN: Consumir API Externa (Práctica 3 Unidad 3)
+export const obtenerSerieDeTiempo = async (lat = 19.4326, lon = -99.1332) => {
+  try {
+    const respuesta = await apiClient.get('/forecast', {
+      params: {
+        latitude: lat,
+        longitude: lon,
+        current_weather: true,
+        hourly: 'temperature_2m',
+      },
+    });
+    // Retornamos la carga útil (payload) limpia
+    return respuesta.data;
+  } catch (error) {
+    // Lanzamos el error para que el componente lo capture en su try/catch
+    throw new Error('No se pudo conectar con la API de datos climáticos.');
+  }
 };
