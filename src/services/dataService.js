@@ -58,3 +58,15 @@ export const filtrarDatos = (datos, filtros) => {
     return coincideMes && coincideCategoria;
   });
 };
+// 5. Formatear datos para gráficos (Práctica 5 Unidad 3)
+export const formatearParaGrafico = (datosCrudos) => {
+  // Manejo de caso vacío
+  if (!datosCrudos || datosCrudos.length === 0) {
+    return { labels: [], values: [] };
+  }
+
+  return {
+    labels: datosCrudos.map(item => item.mes), // Eje X
+    values: datosCrudos.map(item => item.ventas) // Eje Y
+  };
+};
